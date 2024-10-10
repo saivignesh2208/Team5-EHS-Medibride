@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Appointment Page</title>
+    <style>
+        body {
+            background-color: #f4f4f4;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .appointment-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .appointment-card:hover {
+            transform: scale(1.02);
+        }
+        .appointment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .appointment-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .submit-btn {
+            margin-top: 20px;
+        }
+        .nav {
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">MediBridge</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="home.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="nutrition.html">Nutrition</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pill_reminder.html">Pill Reminder</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="chat_page.html">Chat</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="emr.html">EMR</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="appointments.html">Appointments</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="feedback.html">Feedback</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact_us.html">Contact Us</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="sos_alert.html">SOS Alert</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h2 class="text-center">Book an Appointment</h2>
+
+        <div class="appointment-card">
+            <div class="appointment-header">
+                <div class="appointment-title">Select Appointment Details</div>
+            </div>
+            <form id="appointmentForm">
+                <div class="form-group">
+                    <label for="hospitalSelect">Select Hospital</label>
+                    <select class="form-control" id="hospitalSelect" required>
+                        <option value="">Choose...</option>
+                        <option value="hospital1">City Hospital</option>
+                        <option value="hospital2">General Hospital</option>
+                        <option value="hospital3">Health Care Clinic</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="doctorSelect">Select Doctor</label>
+                    <select class="form-control" id="doctorSelect" required>
+                        <option value="">Choose...</option>
+                        <option value="doctor1">Dr. Alice Johnson</option>
+                        <option value="doctor2">Dr. Mark Taylor</option>
+                        <option value="doctor3">Dr. Sarah Brown</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="appointmentDate">Select Date</label>
+                    <input type="date" class="form-control" id="appointmentDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="appointmentTime">Select Time</label>
+                    <input type="time" class="form-control" id="appointmentTime" required>
+                </div>
+                <button type="submit" class="btn btn-success submit-btn">Book Appointment</button>
+            </form>
+        </div>
+
+        <div id="confirmationMessage" class="text-center mt-4" style="display: none;">
+            <h4>Appointment Confirmed!</h4>
+            <p>Your appointment has been successfully booked.</p>
+            <p><strong>Details:</strong></p>
+            <p id="confirmDetails"></p>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        document.getElementById('appointmentForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get selected values
+            const hospital = document.getElementById('hospitalSelect').value;
+            const doctor = document.getElementById('doctorSelect').value;
+            const date = document.getElementById('appointmentDate').value;
+            const time = document.getElementById('appointmentTime').value;
+
+            // Display confirmation message
+            document.getElementById('confirmDetails').innerHTML = `
+                Hospital: ${hospital}<br>
+                Doctor: ${doctor}<br>
+                Date: ${date}<br>
+                Time: ${time}
+            `;
+            document.getElementById('confirmationMessage').style.display = 'block';
+
+            // Reset form after submission
+            document.getElementById('appointmentForm').reset();
+        });
+    </script>
+</body>
+</html>

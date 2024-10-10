@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form</title>
+    <style>
+        /* Google Fonts - Poppins */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .container {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #4070f4; /* Main background color */
+        }
+
+        .form {
+            max-width: 430px;
+            width: 100%;
+            padding: 30px;
+            border-radius: 6px;
+            background: #FFF; /* White background for the form */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Soft shadow effect */
+        }
+
+        header {
+            font-size: 28px;
+            font-weight: 600;
+            color: #232836; /* Dark text color for header */
+            text-align: center;
+            margin-bottom: 20px; /* Space below header */
+        }
+
+        form {
+            margin-top: 20px; /* Space above form elements */
+        }
+
+        .field {
+            margin-bottom: 20px; /* Space between fields */
+        }
+
+        .field input,
+        .field select,
+        .field textarea,
+        .field button {
+            width: 100%;
+            height: 50px; /* Height of input fields */
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            padding: 0 15px; /* Padding for input fields */
+        }
+
+        .field input:focus,
+        .field select:focus {
+            border-bottom-width: 2px; /* Focus effect */
+            border-color: #0171d3; /* Border color change on focus */
+        }
+
+        textarea {
+            height: 100px; /* Height of textarea */
+            padding: 10px 15px; /* Padding for textarea */
+            resize: vertical; /* Allow vertical resizing */
+        }
+
+        .field button {
+            color: #fff; /* White text color */
+            background-color: #0171d3; /* Button background color */
+            transition: background-color 0.3s ease; /* Smooth transition for button hover */
+            cursor: pointer; /* Pointer cursor for button */
+        }
+
+        .field button:hover {
+            background-color: #016dcb; /* Darker blue on hover */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px; /* Space below labels */
+            color: #8b8b8b; /* Light gray color for labels */
+        }
+
+        .line {
+            position: relative;
+            height: 1px;
+            width: 100%;
+            margin: 36px 0;
+            background-color: #d4d4d4; /* Divider line color */
+        }
+
+        .line::before {
+            content: 'Or';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #FFF; /* Background color for "Or" */
+            color: #8b8b8b; /* Gray color for "Or" text */
+            padding: 0 15px; /* Padding around "Or" text */
+        }
+
+        @media screen and (max-width: 400px) {
+            .form {
+                padding: 20px 10px; /* Adjust padding for smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form feedback">
+            <header>Patient Feedback</header>
+            <form id="feedbackForm">
+                <!-- Full Name Field -->
+                <div class="field">
+                    <input type="text" id="name" name="name" placeholder="Full Name" required>
+                </div>
+
+                <!-- Email Field -->
+                <div class="field">
+                    <input type="email" id="email" name="email" placeholder="Email" required>
+                </div>
+
+                <!-- Rate the Experience Field -->
+                <div class="field">
+                    <label for="rating">Rate Your Experience (1 - 5):</label>
+                    <input type="number" id="rating" name="rating" min="1" max="5" required>
+                </div>
+
+                <!-- Type of Feedback Field -->
+                <div class="field">
+                    <select id="feedbackType" name="feedbackType" required>
+                        <option value="" disabled selected>Type of Feedback</option>
+                        <option value="service">Service Quality</option>
+                        <option value="staff">Staff Interaction</option>
+                        <option value="facility">Facility Environment</option>
+                        <option value="suggestions">Suggestions</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <!-- Detailed Feedback Field -->
+                <div class="field">
+                    <textarea id="comments" name="comments" rows="4" placeholder="Please share your detailed feedback here..." required></textarea>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="field">
+                    <button type="submit">Submit Feedback</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('feedbackForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const rating = document.getElementById('rating').value;
+            const feedbackType = document.getElementById('feedbackType').value;
+            const comments = document.getElementById('comments').value;
+
+            if (name && email && rating && feedbackType && comments) {
+                alert('Thank you for your feedback! We appreciate your time.');
+                this.reset();
+            } else {
+                alert('Please fill out all required fields.');
+            }
+        });
+    </script>
+</body>
+</html>

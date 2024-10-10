@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Chat Page</title>
+    <style>
+        body {
+            background-color: #f4f4f4;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .chat-container {
+            height: 400px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            background: white;
+        }
+        .message {
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            position: relative;
+        }
+        .message-sender {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .message-text {
+            background-color: #e1ffc7;
+            padding: 10px;
+            border-radius: 10px;
+            display: inline-block;
+            max-width: 80%;
+        }
+        .message.user .message-text {
+            background-color: #d1e0ff;
+            align-self: flex-end;
+        }
+        .input-group {
+            margin-top: 10px;
+        }
+        nav {
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">MediBridge</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="home.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="nutrition.html">Nutrition</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="pill_reminder.html">Pill Reminder</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="chat_page.html">Chat</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="emr.html">EMR</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="appointments.html">Appointments</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="feedback.html">Feedback</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact_us.html">Contact Us</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h2 class="text-center">Chat with Healthcare Provider</h2>
+        <div class="chat-container d-flex flex-column">
+            <div class="message user">
+                <div class="message-sender">You:</div>
+                <div class="message-text">Hello! I have a question about my medication.</div>
+            </div>
+            <div class="message provider">
+                <div class="message-sender">Provider:</div>
+                <div class="message-text">Sure! What would you like to know?</div>
+            </div>
+            <div class="message user">
+                <div class="message-sender">You:</div>
+                <div class="message-text">I’m not sure about the dosage. Can you help me with that?</div>
+            </div>
+        </div>
+        <form id="chatForm" class="input-group">
+            <input type="text" class="form-control" placeholder="Type your message..." required>
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">Send</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const chatForm = document.getElementById('chatForm');
+        const chatContainer = document.querySelector('.chat-container');
+
+        chatForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const input = chatForm.querySelector('input[type="text"]');
+            const messageText = input.value;
+
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message user';
+            messageDiv.innerHTML = `
+                <div class="message-sender">You:</div>
+                <div class="message-text">${messageText}</div>
+            `;
+            chatContainer.appendChild(messageDiv);
+            chatContainer.scrollTop = chatContainer.scrollHeight; // Scroll to the bottom
+
+            input.value = ''; // Clear the input
+        });
+    </script>
+</body>
+</html>
