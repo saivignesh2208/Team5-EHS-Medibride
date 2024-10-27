@@ -120,8 +120,7 @@
   const password = document.getElementById("password").value;
 
   if (username === "testuser" && password === "password123") {
-      alert("Login successful!");
-      // Redirect to another page or proceed with logged-in actions
+      window.location.href = "home_page.html";
   } else {
       alert("Invalid username or password. Please try again.");
   }
