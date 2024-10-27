@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f4f8;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        header {
+            font-size: 28px;
+            font-weight: 600;
+            color: #0171d3;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .field {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .field input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        .eye-icon {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        .gender-details {
+            margin-bottom: 20px;
+        }
+
+        .gender-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .category {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .category label {
+            display: flex;
+            align-items: center;
+        }
+
+        .category input {
+            margin-right: 8px;
+        }
+
+        .field button {
+            width: 100%;
+            padding: 12px;
+            background-color: #0171d3;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .field button:hover {
+            background-color: #0162bd;
+        }
+
+        .form-link {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .form-link a {
+            color: #0171d3;
+            text-decoration: none;
+        }
+
+        .form-link a:hover {
+            text-decoration: underline;
+        }
+
+        @media screen and (max-width: 400px) {
+            .container {
+                padding: 20px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form signup">
+            <header>Register</header>
+            <form id="registerForm">
+                <div class="field">
+                    <input type="text" id="fullName" name="fullName" placeholder="Full Name" required>
+                </div>
+                <div class="field">
+                    <input type="text" id="username" name="username" placeholder="Username" required>
+                </div>
+                <div class="field">
+                    <input type="email" id="email" name="email" placeholder="Email" required>
+                </div>
+                <div class="field">
+                    <input type="number" id="age" name="age" placeholder="Age" required>
+                </div>
+                <div class="field gender-details">
+                    <span class="gender-title">Gender</span>
+                    <div class="category">
+                        <label for="male">
+                            <input type="radio" id="male" name="gender" value="Male" required>
+                            Male
+                        </label>
+                        <label for="female">
+                            <input type="radio" id="female" name="gender" value="Female" required>
+                            Female
+                        </label>
+                        <label for="other">
+                            <input type="radio" id="other" name="gender" value="Other" required>
+                            Other
+                        </label>
+                    </div>
+                </div>
+                <div class="field">
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                    <div class="eye-icon" onclick="togglePasswordVisibility('password')">👁️</div>
+                </div>
+                <div class="field">
+                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" required>
+                    <div class="eye-icon" onclick="togglePasswordVisibility('confirmPassword')">👁️</div>
+                </div>
+                <div class="field">
+                    <button type="submit">Register</button>
+                </div>
+                <div class="form-link">
+                    <span>Already have an account? <a href="login_page.html">Login here</a></span>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("registerForm")?.addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent form submission
+
+    const fullName = document.getElementById("fullName").value;
+    const username = document.getElementById("username").value;
+    const email = document.getElementById("email").value;
+    const age = document.getElementById("age").value;
+    const gender = document.querySelector('input[name="gender"]:checked')?.value;
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+
+    if (password !== confirmPassword) {
+        alert("Passwords do not match. Please try again.");
+        return;
+    }
+
+    if (!gender) {
+        alert("Please select your gender.");
+        return;
+    }
+
+    alert("Registration successful!");
+    // You can add code here to handle the registration (e.g., sending data to a server)
+});
+
+document.getElementById("loginForm")?.addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent form submission
+
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    if (username === "testuser" && password === "password123") {
+        alert("Login successful!");
+        // Redirect to another page or proceed with logged-in actions
+    } else {
+        alert("Invalid username or password. Please try again.");
+    }
+});
+
+function togglePasswordVisibility(fieldId) {
+    const passwordField = document.getElementById(fieldId);
+    const eyeIcon = document.querySelector(`[onclick*="${fieldId}"]`);
+
+    if (passwordField.type === "password") {
+        passwordField.type = "text";
+        eyeIcon.style.transform = "translateY(-50%) rotate(180deg)";
+    } else {
+        passwordField.type = "password";
+        eyeIcon.style.transform = "translateY(-50%) rotate(0deg)";
+    }
+}
+
+    </script>
+</body>
+</html>
