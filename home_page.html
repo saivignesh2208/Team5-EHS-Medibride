@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>MediBridge Home</title>
+    <style>
+        /* Add your custom CSS here */
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 12px;
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .analytics-chart {
+            animation: fadeIn 1s ease-in;
+            border-radius: 12px;
+        }
+
+        .feature-card {
+            animation: slideIn 0.5s ease forwards;
+            opacity: 0;
+            transform: translateY(20px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .features-section {
+            margin-top: 50px;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .feature-description {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        .feature-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .feature-button:hover {
+            background-color: #0056b3;
+        }
+
+        .icon {
+            font-size: 50px; /* Adjust icon size */
+            color: #007bff; /* Icon color */
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">MediBridge</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="sleepdata.html" >Enter Sleep Data</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="fooddata.html" >Enter Food Data</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pillremainder.html" >Medicine Reminder</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="chatpage.html" >Chat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="emrpage.html" >View EMR</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="appointment.html" >Book Appointment</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="sospage.html">SOS Alert</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact US</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="feedback.html">Feed Back</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1>Welcome to MediBridge</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card analytics-chart mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Sleep Analytics</h5>
+                        <canvas id="sleepChart" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card analytics-chart mb-4">
+                    <div class="card-body">
+                        <h5 class="card-title">Food Analytics</h5>
+                        <canvas id="foodChart" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="features-section">
+            <h2 class="text-center">Explore Our Features</h2>
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="card feature-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-apple-alt icon"></i>
+                            <h5 class="feature-title">Nutrition Navigator</h5>
+                            <p class="feature-description">Get personalized nutrition advice.</p>
+                            <button class="feature-button" data-bs-toggle="modal" data-bs-target="#nutritionModal">Discover</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card feature-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-pills icon"></i>
+                            <h5 class="feature-title">Pill Pal</h5>
+                            <p class="feature-description">Stay on track with timely reminders.</p>
+                            <button class="feature-button" data-bs-toggle="modal" data-bs-target="#medicineReminderModal">Set Reminder</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card feature-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-comments icon"></i>
+                            <h5 class="feature-title">Virtual Care</h5>
+                            <p class="feature-description">Connect with healthcare providers online.</p>
+                            <button class="feature-button" data-bs-toggle="modal" data-bs-target="#chatModal">Chat Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-4">
+                    <div class="card feature-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-life-ring icon"></i>
+                            <h5 class="feature-title">SOS Sentinel</h5>
+                            <p class="feature-description">Send SOS alerts in emergencies.</p>
+                            <button class="feature-button" data-bs-toggle="modal" data-bs-target="#sosModal">Alert Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card feature-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-file-medical-alt icon"></i>
+                            <h5 class="feature-title">EMR Access</h5>
+                            <p class="feature-description">Manage your medical records easily.</p>
+                            <button class="feature-button" data-bs-toggle="modal" data-bs-target="#emrModal">View Records</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card feature-card">
+                        <div class="card-body text-center">
+                            <i class="fas fa-calendar-alt icon"></i>
+                            <h5 class="feature-title">Appointment Scheduler</h5>
+                            <p class="feature-description">Book appointments with ease.</p>
+                            <button class="feature-button" data-bs-toggle="modal" data-bs-target="#appointmentModal">Schedule Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <!-- Include existing modals here for sleep data, food data, nutrition guidance, etc. -->
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
